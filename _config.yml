@@ -8,7 +8,7 @@
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 #--------------------------
 
-title: Koo JaeKwan                          # the main title
+title: 분석중입니다.                          # the main title
 
 tagline: 안녕하세요? 홈페이지 수리중 입니다.  # it will display as the sub-title
 
@@ -22,17 +22,17 @@ url: "https://koojaekwan.github.io"
 
 author: "Koo JaeKwan"                  # change to your full name
 
-avatar: /assets/img/sample/avatar.jpg   # support internet resources
+avatar: D:/Jae Kwan/사진/20200903.jpg   # support internet resources
 
 github:
   username: koojaekwan             # change to your github username
 
-#twitter:
-#  username: twitter_username            # change to your twitter username
+twitter:
+  username: twitter_username            # change to your twitter username
 
 social:
-  name: koojaekwan                  # it will shows as the copyright owner in Footer
-  email: stats@gmail.com             # change to your email address
+  name: jaekwan                  # it will shows as the copyright owner in Footer
+  email: stats.koo@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - #https://twitter.com/username      # change to your twitter homepage
