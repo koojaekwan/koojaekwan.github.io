@@ -1,7 +1,7 @@
 ---
-title: Customize the Favicon
-author: Cotes Chung
-date: 2019-08-11 00:34:00 +0800
+title: 고치는 중 테스트
+author: koo jaekwan
+date: 2020-10-11 00:34:00 +0800
 categories: [Blogging, Tutorial]
 tags: [favicon]
 toc: false
@@ -13,15 +13,4 @@ With a square image (PNG, JPG or GIF) in hand, open the site [*Favicon & App Ico
 
 ![upload-image](/assets/img/sample/upload-image.png)
 
-Click button <kbd>Create Favicon</kbd> and wait a moment for the website to generate the icons of various sizes automatically.
-
-![download-icons](/assets/img/sample/download-icons.png){: width="600"}
-
-Download the generated package, unzip and delete the following two from the extracted files:
-
-- browserconfig.xml
-- manifest.json
- 
-Now, copy the rest image files (`.PNG` and `.ICO`) to cover the original one in folder `assets/img/favicons/`.
-
-Lastly, don't forget to rebuild your site so that the icon becomes your custom edition.
+고치고 있습니다.
