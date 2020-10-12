@@ -13,9 +13,7 @@ title: 분석중입니다.                          # the main title
 tagline: 안녕하세요? 홈페이지 수리중 입니다.  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
+ 
 
 # Replace with the website url, e.g. 'https://username.github.io'
 url: "https://koojaekwan.github.io"
@@ -200,3 +198,15 @@ sitemap_exclude:  # Sitemap will exclude the following items.
     - sitemap.xml
     - robots.txt
     - redirects.json
+
+# 추가한 내용 
+plugins: # add some pluginss
+  - jemoji
+
+
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+
+encoding : UTF-8
