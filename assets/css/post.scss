@@ -1,13 +1,14 @@
 ---
+# Post-specific style
+# v2.0
+# https://github.com/cotes2020/jekyll-theme-chirpy
+# © 2019 Cotes Chung
+# MIT License
 ---
-/*!
-  Post-specific style
-  v2.0
-  https://github.com/cotes2020/jekyll-theme-chirpy
-  © 2019 Cotes Chung
-  MIT License
-*/
-@import "_addon/variables";
+
+
+{% include_relative _addon/main.scss %}
+{% include_relative _addon/syntax.scss %}
 
 $prompt-older: "{{ site.data.label.post.button.previous }}";
 $prompt-newer: "{{ site.data.label.post.button.next }}";
@@ -26,28 +27,41 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
   border-color: var(--btn-border-color);
 }
 
-.post img {
-  margin-top: .5rem;
-  margin-bottom: 1.5rem;
-  max-width: 100%;
-  height: auto;
-  // filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.08));
-  position: relative;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+.post-content {
+  > ol, > ul, > dl {
+    padding-left: 2rem;
+    li+li {
+      margin-top: 0.3rem;
+    }
+  }
+  li {
+    > ol, > ul, > dl { // sub list
+      padding-left: 2rem;
+    }
+    > p {
+      margin: 1rem 0 0.8rem;
+    }
+  }
+  .post-preview-img {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    @include align-center;
+  }
 }
 
 .post-tail-wrapper {
-  margin-top: 5rem;
+  margin-top: 6rem;
   border-bottom: 1px double var(--main-border-color);
   font-size: 0.85rem;
 }
 
+.post-tags {
+  line-height: 2rem;
+}
+
 .post-navigation {
   padding-top: 3rem;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
 
   .btn {
     @include btn-post-nav;
@@ -118,6 +132,7 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 }
 
 #toc-wrapper {
+  margin-top: 7rem;
   border-left: 1px solid rgba(158, 158, 158, 0.17);
   position: -webkit-sticky;
   position: sticky;
@@ -128,9 +143,7 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
     top: 6rem;
   }
   >h3 {
-    font-size: 1rem;
-    font-family: 'Oswald', sans-serif;
-    color: gray;
+    @include label(inherit, 600);
   }
 }
 
@@ -145,9 +158,7 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 #related-posts {
   >h3 {
-    color: gray;
-    font-size: 1.1rem;
-    font-family: 'Oswald', sans-serif;
+    @include label(1.1rem, 600);
   }
   .card {
     border: 1px solid var(--card-border-color);
@@ -157,7 +168,7 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
     h3 {
-      color: var(--label-relate-post);
+      color: var(--text-color);
     }
     &:hover {
       -webkit-transform: translate3d(0, -3px, 0);
@@ -203,6 +214,9 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 #post-extend-wrapper {
   min-height: 2rem;
+  #disqus_thread {
+    margin-bottom: 2rem;
+  }
 }
 
 .post-tail-bottom a {
@@ -260,7 +274,7 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 
 .share-label {
-  font-family: 'Oswald', sans-serif;
+  @include label(inherit, 400, inherit);
   &::after {
     content: ":";
   }
@@ -268,8 +282,11 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 .license-wrapper {
   line-height: 1.2rem;
-  .license-text>a {
+  >a {
     font-weight: 600;
+    &:hover {
+      @extend %link-hover;
+    }
   }
   i {
     font-weight: 400;
@@ -282,10 +299,11 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 @media all and (max-width: 576px) {
   .post-tail-bottom {
-    -ms-flex-wrap: wrap!important;
-    flex-wrap: wrap!important;
+    -ms-flex-wrap: wrap-reverse!important;
+    flex-wrap: wrap-reverse!important;
     >div:first-child {
-      margin-bottom: 1rem;
+      width: 100%;
+      margin-top: 1rem;
     }
   }
 }
@@ -324,47 +342,10 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 /* Hide SideBar and TOC */
 @media all and (max-width: 830px) {
-  .post img {
-    position: relative;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-  }
-
   .post-navigation {
     padding-left: 0;
     padding-right: 0;
     margin-left: -.5rem;
     margin-right: -.5rem;
-  }
-
-}
-
-/*
-  The following resposive design aim to
-  make #post-extend-wrapper margin-right same as pannel's width
-*/
-@media all and (min-width: 1200px) {
-  #post-extend-wrapper {
-    margin-right: 25%;
-  }
-}
-
-@media all and (min-width: 1460px) {
-  #post-extend-wrapper {
-    margin-right: 300px;
-  }
-}
-
-@media all and (min-width: 1650px) {
-  #post-extend-wrapper {
-    margin-right: calc((100% - 1150px) / 10 + 300px);
-  }
-}
-
-@media all and (min-width: 1700px) {
-  #post-extend-wrapper {
-    margin-right: calc((100% - 1150px) / 8 + 300px);
   }
 }

@@ -10,111 +10,124 @@ set -eu
 
 CMD="JEKYLL_ENV=production bundle exec jekyll b"
 
-WORK_DIR=$(dirname $(dirname $(realpath "$0")))
+WORK_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
 
-CONTAINER=${WORK_DIR}/.container
+CONTAINER="${WORK_DIR}/.container"
 
-DEST=${WORK_DIR}/_site
+DEST="${WORK_DIR}/_site"
 
+docker=false
 
-help() {
+_help() {
   echo "Usage:"
   echo
   echo "   bash build.sh [options]"
   echo
   echo "Options:"
-  echo "   -b, --baseurl <URL>      The site relative url that start with slash, e.g. '/project'"
-  echo "   -h, --help               Print the help information"
-  echo "   -d, --destination <DIR>  Destination directory (defaults to ./_site)"
+  echo "   -b, --baseurl     <URL>      The site relative url that start with slash, e.g. '/project'"
+  echo "   -h, --help                   Print the help information"
+  echo "   -d, --destination <DIR>      Destination directory (defaults to ./_site)"
+  echo "       --docker                 Build site within docker"
 }
 
+_install_tools() {
+  # docker image `jekyll/jekyll` based on Alpine Linux
+  echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+  apk update
+  apk add yq
+}
 
-init() {
-  cd $WORK_DIR
+_init() {
+  cd "$WORK_DIR"
+
+  if [[ -f Gemfile.lock ]]; then
+    rm -f Gemfile.lock
+  fi
 
   if [[ -d $CONTAINER ]]; then
-    rm -rf $CONTAINER
+    rm -rf "$CONTAINER"
   fi
 
-  if [[ -d _site ]]; then
-    jekyll clean
+  if [[ -d $DEST ]]; then
+    bundle exec jekyll clean
   fi
 
-  temp=$(mktemp -d)
-  cp -r * $temp
-  cp -r .git $temp
-  mv $temp $CONTAINER
+  local _temp="$(mktemp -d)"
+  cp -r ./* "$_temp"
+  cp -r ./.git "$_temp"
+  mv "$_temp" "$CONTAINER"
 }
 
-
-build() {
-  cd $CONTAINER
-
+_build() {
+  cd "$CONTAINER"
   echo "$ cd $(pwd)"
-  python _scripts/py/init_all.py
 
-  CMD+=" -d ${DEST}"
+  bash "_scripts/sh/create_pages.sh"
+  bash "_scripts/sh/dump_lastmod.sh"
+
+  CMD+=" -d $DEST"
   echo "\$ $CMD"
-  eval $CMD
+  eval "$CMD"
   echo -e "\nBuild success, the site files have been placed in '${DEST}'."
 
-  if [[ -d ${DEST}/.git ]]; then
-    if [[ ! -z $(git -C $DEST status -s) ]]; then
-      git -C $DEST add .
-      git -C $DEST commit -m "[Automation] Update site files." -q
+  if [[ -d "${DEST}/.git" ]]; then
+    if [[ -n $(git -C "$DEST" status -s) ]]; then
+      git -C "$DEST" add .
+      git -C "$DEST" commit -m "[Automation] Update site files." -q
       echo -e "\nPlease push the changes of $DEST to remote master branch.\n"
     fi
   fi
 
-  cd .. && rm -rf $CONTAINER
+  cd .. && rm -rf "$CONTAINER"
 }
 
-
-check_unset() {
-  if [[ -z ${1:+unset} ]]
-  then
-    help
+_check_unset() {
+  if [[ -z ${1:+unset} ]]; then
+    _help
     exit 1
   fi
 }
 
-
 main() {
-  while [[ $# -gt 0 ]]
-  do
+  while [[ $# -gt 0 ]]; do
     opt="$1"
     case $opt in
-      -b|--baseurl)
-        check_unset $2
-        if [[ $2 == \/* ]]
-        then
-          CMD+=" -b $2"
-        else
-          help
-          exit 1
+      -b | --baseurl)
+        local _baseurl="$2"
+        if [[ -z $_baseurl ]]; then
+          _baseurl='""'
         fi
+        CMD+=" -b $_baseurl"
         shift
         shift
         ;;
-      -d|--destination)
-        check_unset $2
-        DEST=$(realpath $2)
-        shift;
-        shift;
+      -d | --destination)
+        _check_unset "$2"
+        DEST="$(realpath "$2")"
+        shift
+        shift
         ;;
-      -h|--help)
-        help
+      --docker)
+        docker=true
+        shift
+        ;;
+      -h | --help)
+        _help
         exit 0
         ;;
       *) # unknown option
-        help
+        _help
         exit 1
         ;;
     esac
   done
 
-  init
-  build
+  if $docker; then
+    _install_tools
+  fi
+
+  _init
+  _build
 }
 
 main "$@"

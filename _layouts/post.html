@@ -16,39 +16,63 @@ layout: default
       <h1 data-toc-skip>{{ page.title }}</h1>
 
       <div class="post-meta text-muted d-flex flex-column">
-        <!-- Published Date and Categoreis -->
+        <!-- Published date and author -->
         <div>
-          <span class="timeago" data-toggle="tooltip" data-placement="bottom"
-           title="{{ page.date | date: site.data.date_format.tooltip }}">
-            {{ page.date | date: site.data.date_format.post }}
-            <i class="unloaded">{{ page.date | date_to_xmlschema }}</i>
+          Posted
+          {% include timeago.html date=page.date tooltip=true %}
+          by
+          <span class="author">
+          {% if page.author %}
+            {{ page.author }}
+          {% else %}
+            {{ site.author }}
+          {% endif %}
           </span>
-          {% if page.categories.size > 0 %}on{% endif %}
-          {% for category in page.categories %}
-            <a href='{{ site.baseurl }}/categories/{{ category | replace: ' ', '-' | downcase | url_encode }}/'>{{ category }}</a>
-            {%- unless forloop.last -%}, {%- endunless -%}
-          {% endfor %}
         </div>
 
-        <!-- page views -->
-        {% if site.google_analytics.pv %}
+        <!-- lastmod -->
+        {%- capture filename -%}
+          {{ page.url | split: "/" | last }}
+        {%- endcapture -%}
+
+        {% for item in site.data.updates %}
+          {% assign encode_filename = item.filename | url_encode %}
+          {% if filename == encode_filename %}
+            {% assign lastmod = item.lastmod %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% if lastmod %}
         <div>
-          <span id="pv" class="pageviews"><i class="fas fa-spinner fa-spin fa-fw"></i></span> views
+          Updated
+          {% include timeago.html date=lastmod class="lastmod" tooltip=true %}
+        </div>
+        {% endif %}
+
+        <!-- page views -->
+        {% if site.google_analytics.pv.enabled %}
+        <div>
+          <span id="pv" class="pageviews"><i class="fas fa-spinner fa-spin fa-fw"></i></span>
+          views
         </div>
         {% endif %}
 
       </div> <!-- .post-meta -->
 
       <div class="post-content">
+
+        {%- capture img_placehodler -%}
+          data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
+        {% endcapture%}
+
         {% if page.image %}
-        <img src="{{ page.image }}">
+          <img src="{{ img_placehodler }}" data-src="{{ page.image }}" class="post-preview-img">
         {% endif %}
-        <!-- Add lozad class into image tags. see: <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+
+        <!-- Using lozad. See: <https://github.com/ApoorvSaxena/lozad.js#usage> -->
         {% if content contains '<img src=' %}
-          {% capture loading %}
-           {{ "/assets/img/commons/loading.png" | relative_url }}
-          {% endcapture %}
-          {% assign replacement = '<img class="lozad" src=' | append: loading | append: ' data-src=' %}
+          {% assign replacement = '<img src="' | append: img_placehodler | append: '" data-src=' %}
           {{ content | replace: '<img src=', replacement }}
         {% else %}
           {{ content }}
@@ -57,22 +81,21 @@ layout: default
 
       <div class="post-tail-wrapper text-muted">
 
-        <!-- lastmod -->
-        {% if page.seo.date_modified > page.date %}
-        <div>
-          Updated
-          <span class="timeago lastmod"
-            data-toggle="tooltip" data-placement="top"
-             title="{{ page.seo.date_modified | date: site.data.date_format.tooltip }}">
-            {{ page.seo.date_modified | date: site.data.date_format.post }}
-            <i class="unloaded">{{ page.seo.date_modified | date_to_xmlschema}}</i>
-          </span>
+        <!-- categories -->
+        {% if page.categories.size > 0 %}
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          {% for category in page.categories %}
+            <a href='{{ site.baseurl }}/categories/{{ category | replace: ' ', '-' | downcase | url_encode }}/'>{{ category }}</a>
+            {%- unless forloop.last -%}, {%- endunless -%}
+          {% endfor %}
         </div>
         {% endif %}
 
-        <!-- Tags -->
+        <!-- tags -->
         {% if page.tags.size > 0 %}
-        <div class="pt-3">
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
           {% for tag in page.tags %}
           <a href="{{ site.baseurl }}/tags/{{ tag | replace: ' ', '-' | downcase | url_encode }}/"
             class="post-tag no-text-decoration" >
@@ -83,19 +106,12 @@ layout: default
         {% endif %}
 
         <div class="post-tail-bottom
-          d-flex justify-content-between align-items-center pt-5 pb-2">
-
-          {% if site.data.right.license %}
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          {% if site.data.rights.license %}
           <div class="license-wrapper">
-            <span class="license-text ml-1 mr-1">
-              {{ site.data.right.license.prompt }}
-              <a href="{{ site.data.right.license.link }}">
-                {{ site.data.right.license.name }}
-                {% for icon in site.data.right.license.icons %}
-                <i class="{{ icon }}"></i>
-                {% endfor %}
-              </a>
-            </span>
+            This post is licensed under
+            <a href="{{ site.data.rights.license.link }}">{{ site.data.rights.license.name }}</a>
+            by the author.
           </div>
           {% endif %}
 
@@ -107,6 +123,7 @@ layout: default
 
     </div> <!-- .post -->
 
+
   </div> <!-- #post-wrapper -->
 
   {% include panel.html %}
@@ -114,21 +131,20 @@ layout: default
 </div> <!-- .row -->
 
 <div class="row">
-  <div id="post-extend-wrapper" class="col-12 col-lg-11 col-xl-8">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
 
-    <div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+    {% include related-posts.html %}
 
-      {% include post-nav.html %}
+    {% include post-nav.html %}
 
-      {% if site.disqus.comments and page.comments %}
-        {% include disqus.html %}
-      {% endif %}
+    {% if site.disqus.comments and page.comments %}
+      {% include disqus.html %}
+    {% endif %}
 
-      {% include related-posts.html %}
+    </div> <!-- #post-extend-wrapper -->
 
-    </div> <!-- .pl-1 pr-1 -->
-
-  </div> <!-- #post-extend-wrapper -->
+  </div> <!-- .col-* -->
 
 </div> <!-- .row -->
 

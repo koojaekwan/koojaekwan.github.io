@@ -1,136 +1,116 @@
-# Jekyll Theme Chirpy
+# Chirpy
 
-[![Build Status](https://github.com/cotes2020/jekyll-theme-chirpy/workflows/build/badge.svg?event=push)](https://github.com/cotes2020/jekyll-theme-chirpy/actions?query=event%3Apush)
+🌏 [English](../README.md) • 简体中文
+
+[![Build Status](https://github.com/cotes2020/jekyll-theme-chirpy/workflows/build/badge.svg?branch=master&event=push)](https://github.com/cotes2020/jekyll-theme-chirpy/actions?query=branch%3Amaster+event%3Apush)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8220b926db514f13afc3f02b7f884f4b)](https://app.codacy.com/manual/cotes2020/jekyll-theme-chirpy?utm_source=github.com&utm_medium=referral&utm_content=cotes2020/jekyll-theme-chirpy&utm_campaign=Badge_Grade_Dashboard)
 [![GitHub license](https://img.shields.io/github/license/cotes2020/jekyll-theme-chirpy.svg)](https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE)
 [![996.icu](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg)](https://996.icu)
 
-Language: [English](../README.md) | 简体中文
+一个不一样的 Jekyll 主题，采用响应式设计，方便记录、管理、分享你的知识和经验。[懂的进 »](https://chirpy.cotes.info)
 
-一个不一样的 Jekyll 主题（内附神秘工具），采用响应式设计，方便记录、管理、分享你的知识和经验。
+[![Devices Mockup](https://raw.githubusercontent.com/cotes2020/jekyll-theme-chirpy/master/assets/img/sample/devices-mockup.png)](https://chirpy.cotes.info)
 
-**功能一览**
-
-* 自动暗夜模式
-* 文章最后修改日期
-* 文章目录
-* 自动推荐相关文章
-* 语法高亮
-* 二级目录
-* 搜索
-* Atom 订阅
-*  Disqus 评论
-* Google 分析
-* GA 浏览报告（高级功能）
-* SEO 优化
-* 网站性能优化
-
-[**在线体验** »](https://chirpy.cotes.info)
-
-![devices-mockup](https://raw.githubusercontent.com/cotes2020/jekyll-theme-chirpy/master/assets/img/sample/devices-mockup.png)
+> ⚠️ 中文版文档存在更新不及时的风险（开源文档以英文为主，请见谅）。如果发现中、英文内容不匹配的情况，一切以英文版内容为准。如果您愿意的话，可提交 issuse 提醒作者更新中文版 README，谢谢。
 
 ## 目录
 
-* [安装](#安装)
-* [运行指南](#运行指南)
-* [参与贡献](#参与贡献)
-* [感谢](#感谢)
-* [赞助](#赞助)
-* [许可证书](#许可证书)
+- [功能一览](#功能一览)
+- [安装](#安装)
+- [使用](#使用)
+- [参与贡献](#参与贡献)
+- [感谢](#感谢)
+- [赞助](#赞助)
+- [许可证书](#许可证书)
+
+## 功能一览
+
+- 文章置顶
+- 可配置的全局主题颜色
+- 文章最后修改日期
+- 文章目录
+- 自动推荐相关文章
+- 语法高亮
+- 二级目录
+- 数学表达式
+- 搜索
+- Atom 订阅
+- Disqus 评论
+- Google 分析
+- GA 浏览报告（高级功能）
+- SEO 优化
+- 网站性能优化
 
 ## 安装
 
-### 准备工作
+[Fork **Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/fork)，把仓库改名为 `USERNAME.github.io`（其中 `USERNAME` 是你的 GitHub 用户名）， 然后克隆到本地：
 
-按照 [Jekyll 官方文档](https://jekyllrb.com/docs/installation/) 完成基础环境的安装 (Ruby，RubyGem，Bundler 和 Jekyll)。为了使用项目内免费提供的脚本工具，你还需要安装 [Python](https://www.python.org/downloads/)( >= 3.5) 和 [ruamel.yaml](https://pypi.org/project/ruamel.yaml/)。
-
-如果你的机器系统是 Debian 或者 macOS，则需要确保安装了 [GNU coreutils](https://www.gnu.org/software/coreutils/)。否则，通过以下方式获得：
-
-* Debian
-
- ```console
- $ sudo apt-get install coreutils
- ```
-
-* macOS
-
- ```console
- $ brew install coreutils
- ```
-
-接着，[fork](https://github.com/cotes2020/jekyll-theme-chirpy/fork) 一份代码，然后克隆你 Fork 的仓库到本地机器上。
-
-```console
-$ git clone git@github.com:USER/jekyll-theme-chirpy.git
+```terminal
+$ git clone https://github.com/USERNAME/USERNAME.github.io.git -b master --single-branch
 ```
 
-`USER` 替换为你的 GitHub username。
+### 设置本地环境
 
+如果你想在本地运行或构建, 参考 [Jekyll Docs](https://jekyllrb.com/docs/installation/)安装 `Ruby`， `RubyGems` 和 `Bundler`。
 
-
-### 安装 Jekyll 插件
-
-在根目录下运行:
+首次运行或构建时, 请先安装 Jekyll plugins。在项目根目录运行：
 
 ```terminal
 $ bundle install
 ```
-`bundle` 命令会自动安装 `Gemfile` 内声明的依赖插件.
 
+`bundle` 会自动安装 `Gemfile` 内指定的依赖插件。
 
+为了生成一些额外的文件（Post 的 _分类_、_标签_ 以及 _更新时间列表_），需要用到一些脚本工具。而它们需要安装依赖包 [yq](https://github.com/mikefarah/yq#install)。另外，如果你电脑的操作系统是 Debian 或者 macOS，还需安装 [GNU coreutils](https://www.gnu.org/software/coreutils/)：
 
-## 运行指南
+- Debian
 
-### 文件目录
+  ```console
+  $ sudo apt-get install coreutils
+  ```
 
-下面是主要的文件目录：
+- macOS
 
-```sh
-jekyll-theme-chirpy/
-├── _data
-├── _includes      
-├── _layouts
-├── _posts          # posts stay here
-├── _scripts
-├── .travis.yml     # remove it
-├── .github         # remove this, too
-├── assets      
-├── tabs
-│   └── about.md    # the ABOUT page
-├── .gitignore
-├── 404.html
-├── Gemfile
-├── LICENSE
-├── README.md
-├── _config.yml     # configuration file
-├── tools           # script tools
-├── docs
-├── feed.xml
-├── index.html
-├── robots.txt
-└── sitemap.xml
+  ```console
+  $ brew install coreutils
+  ```
+
+## 使用
+
+运行 [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/) 需要一些额外的文件, 它们不能通过 Jekyll 原生的命令生成，所以请严格依照下列说明去运行或部署此项目。
+
+### 初始化
+
+在项目根目录，开始初始化:
+
+```console
+$ bash tools/init.sh
 ```
 
+> 如果你不打算部署到 GitHub Pages, 在上述命令后附加参数选项 `--no-gh`。
 
-你需要将以下文件或目录删除:
+上述脚本完成了以下工作:
 
-- .travis.yml
-- .github
+1. 从你的仓库中删除了:
 
+	- `.travis.yml`
+	- `_posts` 下的文件
+	- `docs` 目录
+
+2. 如果使用了参数 `--no-gh`，则会怒删 `.github`。否则，将会配置 GitHub Actions：把 `.github/workflows/pages-deploy.yml.hook` 的后缀 `.hook` 去除，然后删除 `.github` 里的其他目录和文件。
+
+3. 自动提交一个 Commit 以保存上述文件的更改。
 
 ### 配置文件
 
-根据个人需要去修改 `_config.yml` 的变量，大部分都有注释介绍用法。
+根据个人需要去修改 `_config.yml` 的变量，大部分都有注释介绍用法。典型的几个选项是：
 
-* 头像
-    
-    示例的头像文件放置在：`/assets/img/sample/avatar.jpg`. 把它换成你自己的头像，路径不限定，越小越好。(压缩图像体积可上这个网站：*<https://tinypng.com/>* ).
+- `url`
+- `avatar`
+- `timezone`
+- `theme_mode`
 
-* 时区
-
-    时区由 `timezone` 定义，默认为 `亚洲/上海`，如果肉身翻墙要换城市可在此列表找到： [TimezoneConverter](http://www.timezoneconverter.com/cgi-bin/findzone/findzone) 或者 [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
-
-
-###  本地运行
+### 本地运行
 
 使用以下工具可轻松运行:
 
@@ -142,96 +122,53 @@ $ bash tools/run.sh
 
 如果你想在本地服务运行后，把修改源文件的更改实时刷新，可使用选项 `-r` (或 `--realtime`)，不过要先安装依赖 [**fswatch**](http://emcrisostomo.github.io/fswatch/) 。
 
-###  部署到 GitHub Pages
+### 部署
 
 部署开始前，把  `_config.yml` 的 `url` 改为 `https://<username>.github.io`(或者你的私有域名，如：`https://yourdomain.com`)。另外，如果你想使用 [Project 类型网站](https://help.github.com/en/github/working-with-github-pages/about-github-pages#types-of-github-pages-sites)，修改配置文件的 `baseurl` 为项目名称，以斜杠开头，如：`/project`。
 
-#### 方法 1: 由 GitHub Pages 生成站点
+假设你已经完成了 [初始化](#初始化)，现在你可以选择下列其中一个方式去站点部署。
 
-依照本方法，你可以直接把源码推送到远端仓库。
+#### 部署到 GitHub Pages
 
-> **注**: 如果你想使用任何不在这个[列表](https://pages.github.com/versions/)上的插件，越过此方法，直接看 [*方法 2: 本地构建*](#方法-2-本地构建).
+由于安全原因，GitHub Pages 的构建强制加了 `safe`参数，这导致了我们不能使用脚本工具去创建所需的附加页面。因此，我们可以使用 GitHub Actions 去构建站点，把站点文件存储在一个新分支上，再指定该分支作为 Pages 服务的源。
 
-**1**. 仓库改名为:
+1. 推送任意一个 commit 到 `origin/master` 以触发 GitHub Actions workflow。一旦 build 完毕并且成功，远端将会自动出现一个新分支 `gh-pages` 用来存储构建的站点文件。
 
-|站点类型 | 仓库名称|
-|:---|:---|
-|User or Organization | `<username>.github.io`|
-|Project| `<username>.github.io` 以外的名字，譬如 `project`|
+2. 回到 GitHub 上的仓库， 通过 _Settings_
+ → _Options_ → _GitHub Pages_ 选择分支 `gh-pages` 作为[_发布源_](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site):
+    ![gh-pages-sources](https://raw.githubusercontent.com/cotes2020/jekyll-theme-chirpy/master/assets/img/sample/gh-pages-sources.png)
 
-**2**. 提交本地更改，然后运行:
+3. 按照 GitHub 指示的地址去访问你的网站。
 
-```console
-$ bash tools/init.sh
-```
+#### 部署到其他 Pages 平台
 
->**注**: *最后更新* 列表根据文章的 git 修改记录生成，所以运行前先把 `_posts` 目录的修改提交。
+在 GitHub 之外的平台，例如 GitLab，就没法享受 **GitHub Actions** 的便利了。因此我们需要在本地构建站点（或者在其他第三方 CI 平台），然后推送站点文件到服务器上。
 
-它会自动生成文章的 *最后修改日期* 和 *分类 / 标签* 页面.
-
-**3**. 推送到 `origin/master` 然后到 GitHub 网页为该项目开启 Pages 服务。
-
-**4**. 网站将运行在：
-
-|站点类型 | 网站 URL |
-|:---|:---|
-|User or Organization | `https://<username>.github.io/`|
-|Project| `https://<username>.github.io/project/`|
-
-
-#### 方法 2: 本地构建
-
-由于安全原因，GitHub Pages 不允许第三方插件运行，如果你想突破规则，就要本地构建站点内容。
-
-**1**. 到 GitHub 网页，创建一个新的仓库，根据以下规则命名: 
-
-|站点类型 | 仓库名称|
-|:---|:---|
-|User or Organization | `<username>.github.io`|
-|Project| `<username>.github.io` 以外的名字， 例如 `project`|
-
-然后 Clone 新仓库到本地。
-
-**2**. 构建站点:
+在项目根目录，运行:
 
 ```console
-$ bash tools/build.sh -d /path/to/local/project/
+$ bash tools/build.sh -d /path/to/site/
 ```
-> `project` 为新仓库名称。
 
-生成的静态文件将会在 `/path/to/local/project`. 把新仓库的修改提交并推送到远端 `master` 分支.
-
-**3**. 回到 GithHub 网页，为该仓库开启 Pages 服务。
-
-**4**. 网站将运行在:
-
-|站点类型 | 站点 URL |
-|:---|:---|
-|User or Organization | `https://<username>.github.io/`|
-|Project| `https://<username>.github.io/project/`|
-
+生成的静态文件将会在 `/path/to/site/`， 把内部的文件上传到服务器即可。
 
 ### 文档
 
-更多细节及更佳的阅读体验，请参阅 [线上教程](https://chirpy.cotes.info/categories/tutorial/)。 与此同时，[Wiki](https://github.com/cotes2020/jekyll-theme-chirpy/wiki) 也有一份教程的拷贝。
-
+若想要更多细节以及更佳的阅读体验，请参阅 [线上教程](https://chirpy.cotes.info/categories/tutorial/)。 与此同时，[Wiki](https://github.com/cotes2020/jekyll-theme-chirpy/wiki) 也有一份教程的拷贝。
 
 ## 参与贡献
 
-三人行必有我师，欢迎提报告 bug, 帮助改进代码质量，或者提交新功能。具体操作规则请参考[此文](.github/CONTRIBUTING.md)，谢谢🙏。
+三人行必有我师，欢迎提报告 bug, 帮助改进代码质量，或者提交新功能。具体操作规则请参考 [贡献指南](../.github/CONTRIBUTING.md)，谢谢 🙏。
 
-## 感谢
+## 鸣谢
 
 这个主题的开发主要基于 [Jekyll](https://jekyllrb.com/) 生态、[Bootstrap](https://getbootstrap.com/)、[Font Awesome](https://fontawesome.com/) 和其他一些出色的工具 (相关文件中可以找到这些工具的版权信息).
 
-:tada:感谢所有参与代码贡献的小伙伴, 他们的 GayHub ID 在这个[列表](https://github.com/cotes2020/jekyll-theme-chirpy/graphs/contributors)。 另外, 提交过 issues(或者未被合并 PR)的高富帅和白富美也不会被遗忘,他/她们帮助报告 bug、分享新点子或者启发了我写出更通俗易懂的文档。
-
-
+:tada: 感谢所有参与代码贡献的小伙伴, 他们的 GayHub ID 在这个[列表](https://github.com/cotes2020/jekyll-theme-chirpy/graphs/contributors)。 另外, 提交过 issues(或者未被合并 PR) 的高富帅和白富美也不会被遗忘,他/她们帮助报告 bug、分享新点子或者启发了我写出更通俗易懂的文档。
 
 ## 赞助
 
-如果您喜欢这个主题或者它对您有帮助，请考虑打赏作者：在 [项目主页](https://github.com/cotes2020/jekyll-theme-chirpy) 点击按钮 <kbd>:heart:Sponsor</kbd> 选择适合的链接即可完成（国内一般选第二个链接，支付宝/微信赞助），您的打赏将会极大地鼓励作者，并帮助作者更好地维护项目！
-
+如果您喜欢这个主题或者它对您有帮助，请考虑打赏作者：在 [项目主页](https://github.com/cotes2020/jekyll-theme-chirpy) 点击按钮 <kbd>:heart: Sponsor</kbd> 选择适合的链接即可完成（国内一般选第二个链接，支付宝/微信赞助），您的打赏将会极大地鼓励作者，并帮助作者更好地维护项目！
 
 ## 许可证书
 
