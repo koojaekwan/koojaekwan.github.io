@@ -7,8 +7,8 @@
   MIT License
 -->
 
-<i class="mode-toggle fas fa-sun" dark-mode-invisible></i>
-<i class="mode-toggle fas fa-moon" light-mode-invisible></i>
+<i class="mode-toggle fas fa-sun" light-mode-invisible></i>
+<i class="mode-toggle fas fa-moon" dark-mode-invisible></i>
 
 <script type="text/javascript">
 
@@ -20,11 +20,11 @@
     constructor() {
       if (this.mode != null) {
         if (this.mode == ModeToggle.DARK_MODE) {
-          if (!this.isSysDarkPrefer) {
+          if (!this.isDarkPrefer) {
             this.setDark();
           }
         } else {
-          if (this.isSysDarkPrefer) {
+          if (this.isDarkPrefer) {
             this.setLight();
           }
         }
@@ -34,14 +34,15 @@
 
       /* always follow the system prefers */
       this.sysDarkPrefers.addListener(function() {
+
         if (self.mode != null) {
           if (self.mode == ModeToggle.DARK_MODE) {
-            if (!self.isSysDarkPrefer) {
+            if (!self.isDarkPrefer) {
               self.setDark();
             }
 
           } else {
-            if (self.isSysDarkPrefer) {
+            if (self.isDarkPrefer) {
               self.setLight();
             }
           }
@@ -68,44 +69,27 @@
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
     }
 
-    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+    get sysDarkPrefers() {
+      return window.matchMedia("(prefers-color-scheme: dark)");
+    }
 
-    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+    get isDarkPrefer() {
+      return this.sysDarkPrefers.matches;
+    }
 
-    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
-
-    get isLightkMode() { return this.mode == ModeToggle.LIGHT_MODE; }
-
-    get hasMode() { return this.mode != null; }
-
-    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
+    get mode() {
+      return sessionStorage.getItem(ModeToggle.MODE_KEY);
+    }
 
     flipMode() {
-      if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightkMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
+      if ((this.mode == null && this.isDarkPrefer) ||
+          this.mode == ModeToggle.DARK_MODE) {
+        this.setLight();
 
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
-
-      } else {
-        if (this.isSysDarkPrefer) {
-          this.setLight();
-        } else {
-          this.setDark();
-        }
+      } else { /* light mode or default-light */
+        this.setDark();
       }
-
-    } /* flipMode() */
+    }
 
   } /* ModeToggle */
 

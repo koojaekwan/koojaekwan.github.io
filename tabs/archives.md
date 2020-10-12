@@ -1,6 +1,6 @@
 ---
 title: Archives
-type: archives
+
 # The Archives of posts.
 # v2.0
 # https://github.com/cotes2020/jekyll-theme-chirpy
@@ -24,7 +24,7 @@ type: archives
         {% capture this_month %}{{ post.date | date: "%b" }}{% endcapture %}
         <span class="date day">{{ this_day }}</span>
         <span class="date month small text-muted">{{ this_month }}</span>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       </div>
     </li>
   {% if forloop.last %}

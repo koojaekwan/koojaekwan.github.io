@@ -7,7 +7,7 @@
 * MIT Licensed
 */
 
-/* ---------- scss placeholder --------- */
+/*---------- scss placeholder ---------*/
 
 %tag-hover {
   background: var(--tag-hover);
@@ -15,12 +15,12 @@
 }
 
 %table-cell {
-  padding: 0.4rem 1rem;
+  padding: .35rem .8rem;
   font-size: 95%;
 }
 
 %link-hover {
-  color: #d2603a !important;
+  color: #d2603a!important;
   border-bottom: 1px solid #d2603a;
   text-decoration: none;
 }
@@ -37,11 +37,6 @@
   border-bottom: none;
 }
 
-%heading {
-  font-weight: 400;
-  font-family: 'Lato', 'Microsoft Yahei', sans-serif;
-}
-
 %section {
   #post-wrapper & {
     line-height: 1.2;
@@ -50,21 +45,30 @@
 }
 
 %anchor {
-  padding-top: 3.5rem;
-  margin-top: -2.5rem;
+  #post-wrapper &,
+  #page & {
+    padding-top: 3.5rem;
+    margin-top: -2.5rem;
+  }
 }
 
-/* ---------- scss mixin --------- */
+%footer-content {
+  font-weight: 600;
+  color: var(---footer-link);
+}
+
+
+/*---------- scss mixin ---------*/
 
 @mixin no-text-decoration {
   text-decoration: none;
 }
 
-@mixin sidebar-links($color: rgba(255, 255, 255, 0.5)) {
-  color: $color;
+@mixin sidebar-icon {
+  color: rgba(255, 255, 255, 0.5);
   transition: color 0.35s ease-in-out;
   user-select: none;
-  margin: 0 0.25rem;
+  margin: 0 .25rem;
 }
 
 @mixin icon-round($diameter) {
@@ -86,23 +90,4 @@
 
 @mixin input-placeholder {
   opacity: 0.6;
-}
-
-@mixin semi-bold {
-  font-weight: 600;
-}
-
-@mixin label($font-size: 1rem, $font-weight: 600, $color: var(--label-color)) {
-  color: $color;
-  font-size: $font-size;
-  font-weight: $font-weight;
-  font-family: 'Roboto Condensed', 'Microsoft Yahei', sans-serif;
-}
-
-@mixin align-center {
-  position: relative;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
 }
