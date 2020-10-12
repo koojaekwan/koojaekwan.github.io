@@ -2,7 +2,7 @@
 * The syntax light mode typography colors
 * v2.1
 * https://github.com/cotes2020/jekyll-theme-chirpy
-* © 2020 Cotes Chung
+* Â© 2020 Cotes Chung
 * MIT Licensed
 */
 
@@ -19,7 +19,7 @@
   --link-color: #2a408e;             
   --link-underline-color: #dee2e6;
   --text-muted-color: gray;
-  --tb-odd-bg: #f8f9fa;  //기존 : #fbfcfd
+  --tb-odd-bg: #fbfcfd; 
   --tb-border-color: white; // #eaeaea
   --button-bg: #fff;
   --btn-backtotop-color: #686868;
@@ -28,12 +28,12 @@
 
    /* Sidebar */
 
-    /* Sidebar(기존�?
+    /* Sidebar(변경전)
   --sidebar-bg: radial-gradient(
     circle, rgba(42, 30, 107, 1) 0%, rgba(35, 37, 46, 1) 100%);
     */
 
-    /* Sidebar(변경값) */
+    /* Sidebar(변경후) */
   --sidebar-bg: #689297;
   --siidebar-text-color: #fffcfc;
     /* */
@@ -49,9 +49,9 @@
   --input-focus-border-color: var(--btn-border-color);
 
   /* Home page */
-  --post-list-text-color: white; //기존 : dimgray
+  --post-list-text-color: dimgray; 
   --btn-patinator-text-color: #555555;
-  --btn-paginator-hover-color: white;   //기존 : #e9ecef
+  --btn-paginator-hover-color: #e9ecef;   
   --btn-active-bg: #2a408e;
   --btn-active-border-color: #007bff;
   --btn-text-color: #f8f8f8;
