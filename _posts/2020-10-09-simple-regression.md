@@ -1,7 +1,11 @@
-Simple linear regression
-================
-Jae Kwan Koo
-2020-10-10 10:55:00 +0800
+---
+title: "Simple linear regression"
+author: "Jae Kwan Koo"
+date: 2020-10-10 10:55:00 +0800
+categories: [Blogging, Tutorial]
+tags: [getting started]
+pin: true
+---  
 
   - [Library](#library)
   - [Week 1](#week-1)
