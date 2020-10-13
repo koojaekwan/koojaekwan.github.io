@@ -25,15 +25,15 @@ avatar: https://avatars1.githubusercontent.com/u/26732609?s=460&u=233a77c5f17600
 github:
   username: koojaekwan             # change to your github username
 
-instagram:
-  username: jae_kwan_koo            # change to your twitter username
+#twitter:
+ # username:             # change to your twitter username
 
 social:
   name: jaekwan                  # it will shows as the copyright owner in Footer
   email: stats.koo@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://www.instagram.com/jae_kwan_koo/      # change to your twitter homepage
+    #-       # change to your twitter homepage
     - https://github.com/koojaekwan       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
