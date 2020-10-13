@@ -6,10 +6,10 @@
 
 -
   type: github
-  icon: 'fa fa-github-alt'
+  icon: 'fa fa-github'
 -
   type: instagram
-  icon: 'fab fa-instagram'
+  icon: 'fa fa-instagram'
 -
   type: email
   icon: 'fas fa-envelope'
