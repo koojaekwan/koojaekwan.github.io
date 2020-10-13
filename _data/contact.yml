@@ -6,9 +6,9 @@
 
 -
   type: github
-  icon: 'fa fa-github'
+  icon: 'fab fa-github-alt'
 -
-  type: twitter
+  type: instagram
   icon: 'fa fa-instagram'
 -
   type: email
