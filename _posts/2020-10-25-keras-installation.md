@@ -1,7 +1,5 @@
-Installation the Tensorflow & Keras in R
 ================
 Jae Kwan Koo
-2020-10-25 16:00:00 +0900
 
   - [ANACONDA](#anaconda)
       - [First trial](#first-trial)
@@ -104,7 +102,7 @@ install_keras()
 
 ## Example : MNIST
 
-잘 작동하는지도 확인해보자.
+잘 작동하는지 MNIST예제를 통해 확인해보자.  
 
 ``` r
 mnist <- dataset_mnist()
@@ -183,4 +181,7 @@ model %>% evaluate(x_test, y_test)
 model %>% predict_classes(x_test[1:10, ])
 ```
 
-    ##  [1] 7 2 1 0 4 1 4 9 5 9
+    ##  [1] 7 2 1 0 4 1 4 9 5 9  
+
+
+앞 10개에 대한 predict value이다.  
