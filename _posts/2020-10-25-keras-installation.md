@@ -174,7 +174,7 @@ history <- model %>% fit(
 plot(history)
 ```
 
-<img src="D:/Jae Kwan/github/koojaekwan/_posts/keras-installation_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="keras-installation_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 ``` r
 model %>% evaluate(x_test, y_test)
