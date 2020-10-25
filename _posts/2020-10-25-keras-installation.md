@@ -42,7 +42,7 @@ install_keras()
 
 <br> <br>
 
-여기서 처음에 봤던 메시지가 뜨면서 안된다면 아래 방법을 이용하면 안정성있게 이용할 수 있다.
+여기서 처음에 봤던 에러 메시지가 뜨면서 안된다면 아래 방법을 이용하면 안정성있게 이용할 수 있다.
 
 ## conda env
 
@@ -174,7 +174,7 @@ history <- model %>% fit(
 plot(history)
 ```
 
-<img src="keras-installation_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="D:/Jae Kwan/github/koojaekwan/_posts/keras-installation_files/figure-gfm/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 ``` r
 model %>% evaluate(x_test, y_test)
@@ -190,4 +190,4 @@ model %>% predict_classes(x_test[1:10, ])
     ##  [1] 7 2 1 0 4 1 4 9 5 9  
 
 
-앞 10개에 대한 predict value이다.  
+앞 10개에 대한 prediction value이다.  
