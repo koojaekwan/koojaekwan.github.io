@@ -1,5 +1,11 @@
-================
-Jae Kwan Koo
+---
+title: Installation the Tensorflow & Keras in R
+author: JaeKwan Koo
+date: 2020-10-25 16:00:00 +0900
+categories: [R Blog, R]
+tags: [Tensorflow, Keras]
+pin: false
+---  
 
   - [ANACONDA](#anaconda)
       - [First trial](#first-trial)
