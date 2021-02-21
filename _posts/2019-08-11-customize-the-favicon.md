@@ -13,9 +13,15 @@ With a square image (PNG, JPG or GIF) in hand, open the site [*Favicon & App Ico
 
 ![upload-image](/assets/img/sample/upload-image.png)  
 
+
 과연?  
 
-![keras-image](/assets/img/sample/unnamed-chunk-5-1.png)  
+![upload-image](/assets/img/sample/upload-image.png)  
+
+
+![fff](https://github.com/koojaekwan/koojaekwan.github.io/blob/master/assets/img/sample/unnamed-chunk-5-1.png)  
+
+
 
 
 
