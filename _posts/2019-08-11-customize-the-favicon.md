@@ -15,7 +15,7 @@ With a square image (PNG, JPG or GIF) in hand, open the site [*Favicon & App Ico
 
 과연?  
 
-![keras](/assets/img/sample/unnamed-chunk-5-1.png)  
+![keras-image](/assets/img/sample/unnamed-chunk-5-1.png)  
 
 
 
