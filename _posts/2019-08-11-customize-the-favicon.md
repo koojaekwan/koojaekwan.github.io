@@ -16,10 +16,10 @@ With a square image (PNG, JPG or GIF) in hand, open the site [*Favicon & App Ico
 
 과연?  
 
-![upload-image](/assets/img/sample/upload-image.png)  
 
+제발좀;;
 
-![fff](https://github.com/koojaekwan/koojaekwan.github.io/blob/master/assets/img/sample/unnamed-chunk-5-1.png)  
+![fff](/assets/img/sample/unnamed-chunk-5-1.png)  
 
 
 
