@@ -11,6 +11,10 @@ In [**Chirpy**](https://github.com/cotes2020/jekyll-theme-chirpy/), the image fi
 
 With a square image (PNG, JPG or GIF) in hand, open the site [*Favicon & App Icon Generator*](https://www.favicon-generator.org/) and upload your original image.
 
-![upload-image](/assets/img/sample/upload-image.png)
+![upload-image](/assets/img/sample/upload-image.png)  
+
+``` r
+knitr::include_graphics('https://raw.githubusercontent.com/koojaekwan/jaekwan-s-R/master/Computerized_Statistics/Chapter2/chap2-2.PNG')
+```  
 
 고치고 있습니다.
