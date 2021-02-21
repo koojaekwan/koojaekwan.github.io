@@ -13,6 +13,7 @@ With a square image (PNG, JPG or GIF) in hand, open the site [*Favicon & App Ico
 
 ![upload-image](/assets/img/sample/upload-image.png)  
 
-<img src="https://raw.githubusercontent.com/koojaekwan/jaekwan-s-R/d2a9dd03991f12a752fe05bcf4948b79ee7f4bff/Computerized_Statistics/Chapter2/chap2-2.PNG" style="display: block; margin: auto;" />
+![keras](/_posts/keras-installation_files/figure-gfm/unnamed-chunk-5-1.png)  
+
 
 고치고 있습니다.
