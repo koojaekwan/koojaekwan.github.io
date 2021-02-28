@@ -1,5 +1,5 @@
 ---
-title: Image root in Jekyll git blog
+title: Jekyll git blog에서 이미지 경로 잘 찾아주기
 author: JaeKwan Koo
 date: 2021-02-28 12:50:00 +0900
 categories: [R Blog, R]
