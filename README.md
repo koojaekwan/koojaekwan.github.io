@@ -1,3 +1,7 @@
+# 지켜야 하는 것  
+* tag html명은 소문자로 시작  
+* 필요한 tag는 tags폴더에서 html파일 명 양식 
+
 # Chirpy
 
 🌏 English • [简体中文](docs/README_zh-CN.md)
