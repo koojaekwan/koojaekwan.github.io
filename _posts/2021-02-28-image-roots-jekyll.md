@@ -51,7 +51,7 @@ rmd파일로 작성하고 md파일을 생성하고 올리게 되면 자동으로
 plot(1:10)
 ```
 
-<img src="picture_root_files/figure-gfm/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+<img src="https://raw.githack.com/koojaekwan/koojaekwan.github.io/master/_posts/picture_root_files/figure-gfm/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
 rmd파일로 간단한 이미지를 생성하기 위한 산점도를 만들고, md파일로
 변환하게 되면 이미지 파일 폴더도 같이 생겨난다.  
